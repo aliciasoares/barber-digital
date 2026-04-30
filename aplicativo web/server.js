@@ -1,15 +1,18 @@
 const express = require('express')
+const router = require('./mvc/routes/config')
 
 class Server
 {
-
-    app
+    app 
     port
 
     constructor(port)
     {
         this.app = express()
         this.port = port
+        this.app.use(router)
+        this.app.set("view engine", "ejs")
+        this.app.set("views","mvc/views")
     }
 
     listen()
@@ -18,6 +21,7 @@ class Server
             console.log("Servidor Online...")
         })
     }
+
 }
 
-module.exports = new Server()
+module.exports = new Server(3000)
