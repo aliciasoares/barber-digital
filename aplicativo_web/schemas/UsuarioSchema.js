@@ -18,8 +18,7 @@ Usuario.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-    },
-    {
+    },{
         sequelize,
         modelName: 'Users',
         tableName: 'users',

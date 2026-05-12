@@ -36,8 +36,8 @@ Atendimento.init({
     },
     {
         sequelize,
-        modelName: 'Atendimento',
-        tableName: 'atendimento',
+        modelName: 'Atendimentos',
+        tableName: 'atendimentos',
     }
 );
 

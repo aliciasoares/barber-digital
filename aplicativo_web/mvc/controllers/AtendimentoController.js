@@ -1,4 +1,4 @@
-const AtendimentoService = require("../../service/AtendimentoService");
+const AtendimentoService = require("../../services/AtendimentoService");
 class AtendimentoController 
 {
 

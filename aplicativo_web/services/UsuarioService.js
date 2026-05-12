@@ -90,7 +90,7 @@ class UsuarioService
         {
            
             const model = new Usuario(
-                email || usuario.email , 
+                email || usuario.email, 
                 senha || usuario.password,
                 username || usuario.username         
             )
