@@ -1,48 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #f9f5f0;
+            --sidebar-brown: #3d1f14;
+            --text-creme: #e6d5c3;
+            --input-beige: #efe1d1;
+            --btn-dark: #220f08;
+            --accent-gold: #d4a373;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            backdrop-filter: blur(8px);
+        }
+
+        .edit-card {
+            width: 100%;
+            max-width: 850px;
+            height: 600px;
+            background: rgba(253, 246, 236, 0.95);
+            display: flex;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .sidebar {
+            flex: 1;
+            background: var(--sidebar-brown);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-creme);
+            padding: 40px;
+            text-align: center;
+            border-radius: 0 160px 160px 0;
+        }
+
+        .barber-icon {
+            width: 100px;
+            filter: invert(86%) sepia(13%) saturate(542%) hue-rotate(349deg) brightness(95%) contrast(89%);
+            margin-bottom: 20px;
+        }
+
+        .sidebar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--sidebar-brown);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .label-text {
+            display: block;
+            text-align: left;
+            margin-left: 20px;
+            margin-bottom: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--sidebar-brown);
+            text-transform: uppercase;
+        }
+
+        .custom-input {
+            background-color: var(--input-beige) !important;
+            border: none !important;
+            border-radius: 50px !important;
+            padding: 12px 25px !important;
+            margin-bottom: 15px;
+            color: var(--sidebar-brown) !important;
+            font-size: 0.9rem;
+        }
+
+        .btn-update {
+            background-color: var(--btn-dark) !important;
+            color: white !important;
+            border-radius: 50px !important;
+            padding: 15px !important;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-update:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .back-link {
+            display: inline-block;
+            /* AJUSTE REALIZADO AQUI: Maior distanciamento do botão */
+            margin-top: 40px; 
+            font-size: 0.85rem;
+            color: #777;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--sidebar-brown);
+        }
+    </style>
+    
+    <title>Barber Shop - Editar Perfil</title>
 </head>
-
 <body>
-    <form>
-        <h1> Edição do usuario</h1>
 
-        <input value="<%= usuario.id %>" type="text" id="usuarioId" hidden>
-
-        <div>
-            <div>
-                <label for="username">Username</label>
-            </div>
-            <div>
-                <input value="<%= usuario.username %>" type="text" id="username">
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="email">E-mail</label>
-            </div>
-            <div>
-                <input value="<%= usuario.email %>" type="email" id="email">
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="senha">Senha</label>
-            </div>
-            <div>
-                <input type="password" id="senha">
-            </div>
-        </div>
-        <div>
-            <button id="btnCadastrarUsuario" type="submit">Cadastrar</button>
+    <div class="edit-card">
+        <div class="sidebar">
+            <img src="https://cdn-icons-png.flaticon.com/512/81/81139.png" class="barber-icon" alt="ícone tesoura">
+            <h1>BARBERSHOP</h1>
+            <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">Atualize as informações de acesso com segurança.</p>
         </div>
 
-    </form>
+        <div class="form-section">
+            <div class="w-100" style="max-width: 340px; text-align: center;">
+                <h2>Editar Perfil</h2>
+                <p class="subtitle">ID: #<%= usuario.id %></p>
 
+                <form id="formEditar">
+                    <input value="<%= usuario.id %>" type="hidden" id="id">
+
+                    <span class="label-text">Nome de Usuário</span>
+                    <input value="<%= usuario.username %>" type="text" id="username" class="form-control custom-input">
+
+                    <span class="label-text">E-mail</span>
+                    <input value="<%= usuario.email %>" type="email" id="email" class="form-control custom-input">
+
+                    <span class="label-text">Nova Senha</span>
+                    <input type="password" id="senha" class="form-control custom-input" placeholder="Deixe em branco para manter">
+
+                    <button id="btnAtualizar" type="submit" class="btn btn-update">Salvar Alterações</button>
+                </form>
+
+
+                <a href="/user/list" class="back-link">← Voltar para a lista</a>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
 
