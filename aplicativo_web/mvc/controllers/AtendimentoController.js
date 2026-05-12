@@ -5,7 +5,7 @@ class AtendimentoController
     constructor() 
     {
         this.atendimentoService = new AtendimentoService();
-        this.index = this.index.bind(this);
+        
     }
 
     async index(req, res) {
