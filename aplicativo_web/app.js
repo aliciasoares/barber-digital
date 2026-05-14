@@ -1,23 +1,37 @@
 const sequelize = require("./database/dbconfig");
+const Usuario = require("./schemas/UsuarioSchema");
+const Atendimento = require("./schemas/AtendimentoSchema")
 const server = require("./server");
 
 async function run() {
-    const port = 8080
+
+    const port = 8080;
 
     try {
+
+        Usuario.hasMany(Atendimento, {
+            foreignKey:"usuarioId",
+            as:"atendimentos"
+        })
+
+        Atendimento.belongsTo(Usuario, {
+            foreignKey:"usuarioId",
+            as:"users"
+        })
+
         await sequelize.authenticate();
         console.log('Conexão com o banco de dados estabelecida com sucesso.');
-
+       
         await sequelize.sync({ alter: true });
         console.log('Modelos sincronizados com o banco de dados.');
-
+   
         server.port = port;
         server.listen();
 
     } catch (error) {
         console.error('Erro ao conectar ao banco de dados:', error);
     }
+}
 
-    }
 
-    run();
+run();

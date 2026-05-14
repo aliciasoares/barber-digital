@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <title>Barber Shop - Editar</title>
+    <title>Barber Shop - Editar Perfil</title>
+
     
     <style>
         :root {
@@ -16,7 +16,6 @@
             --input-beige: #efe1d1;
             --btn-dark: #220f08;
             --accent-gold: #d4a373;
-            --nav-width: 100px;
         }
 
         body {
@@ -27,68 +26,11 @@
             background-attachment: fixed;
             font-family: 'Inter', sans-serif;
             display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
             backdrop-filter: blur(8px);
-        }
-
-        .side-navigation {
-            width: var(--nav-width);
-            background: rgba(18, 10, 7, 0.95);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 0;
-            border-right: 1px solid rgba(212, 163, 115, 0.1);
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-
-        .nav-item-link {
-            color: rgba(230, 213, 195, 0.5);
-            font-size: 1.4rem;
-            transition: 0.3s;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .nav-item-link:hover, .nav-item-link.active {
-            color: var(--accent-gold);
-            background: rgba(212, 163, 115, 0.05);
-        }
-
-        .nav-label {
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            margin-top: 5px;
-            letter-spacing: 1px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: var(--nav-width);
-            padding: 20px;
         }
 
         .edit-card {
@@ -102,7 +44,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
-        .sidebar-card {
+        .sidebar {
             flex: 1;
             background: var(--sidebar-brown);
             display: flex;
@@ -121,7 +63,7 @@
             margin-bottom: 20px;
         }
 
-        .sidebar-card h1 {
+        .sidebar h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             line-height: 1.1;
@@ -186,7 +128,6 @@
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: none;
         }
 
         .btn-update:hover {
@@ -196,6 +137,7 @@
 
         .back-link {
             display: inline-block;
+          
             margin-top: 40px; 
             font-size: 0.85rem;
             color: #777;
@@ -207,80 +149,43 @@
             color: var(--sidebar-brown);
         }
     </style>
+    
 </head>
 <body>
 
-    <nav class="side-navigation">
-        <ul class="nav-links">
-            <li>
-                <a href="/mvc/views/usuario/UsuarioView.ejs" class="nav-item-link">
-                    <i class="bi bi-house"></i>
-                    <span class="nav-label">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="/user/list" class="nav-item-link">
-                    <i class="bi bi-people"></i>
-                    <span class="nav-label">Usuários</span>
-                </a>
-            </li>
-            <li>
-                <a href="/user/create" class="nav-item-link">
-                    <i class="bi bi-person-plus"></i>
-                    <span class="nav-label">Novo Cadastro</span>
-                </a>
-            </li>
-            <li class="my-2" style="border-top: 1px solid rgba(212,163,115,0.2); width: 60%; align-self: center;"></li>
-            <li>
-                <a href="/atendimento/list" class="nav-item-link">
-                    <i class="bi bi-calendar-check"></i>
-                    <span class="nav-label">Atendimentos</span>
-                </a>
-            </li>
-            <li>
-                <a href="/atendimento/create" class="nav-item-link">
-                    <i class="bi bi-calendar-plus"></i>
-                    <span class="nav-label">Agendar</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="edit-card">
+        <div class="sidebar">
+            <img src="https://cdn-icons-png.flaticon.com/512/81/81139.png" class="barber-icon" alt="ícone tesoura">
+            <h1>BARBERSHOP</h1>
+            <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">Atualize as informações de acesso com segurança.</p>
+        </div>
 
-    <main class="main-content">
-        <div class="edit-card">
-            <div class="sidebar-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/81/81139.png" class="barber-icon" alt="ícone tesoura">
-                <h1>BARBERSHOP</h1>
-                <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">Atualize as informações de acesso com segurança.</p>
-            </div>
+        <div class="form-section">
+            <div class="w-100" style="max-width: 340px; text-align: center;">
+                <h2>Editar Perfil</h2>
+                <p class="subtitle">ID: #<%= usuario.id %></p>
 
-            <div class="form-section">
-                <div class="w-100" style="max-width: 340px; text-align: center;">
-                    <h2>Editar Perfil</h2>
-                    <p class="subtitle">ID: #<%= usuario.id %></p>
+                <form id="formEditar">
+                    <input value="<%= usuario.id %>" type="hidden" id="id">
 
-                    <form id="formEditar">
-                        <input value="<%= usuario.id %>" type="hidden" id="id">
+                    <span class="label-text">Nome de Usuário</span>
+                    <input value="<%= usuario.username %>" type="text" id="username" class="form-control custom-input">
 
-                        <span class="label-text">Nome de Usuário</span>
-                        <input value="<%= usuario.username %>" type="text" id="username" class="form-control custom-input">
+                    <span class="label-text">E-mail</span>
+                    <input value="<%= usuario.email %>" type="email" id="email" class="form-control custom-input">
 
-                        <span class="label-text">E-mail</span>
-                        <input value="<%= usuario.email %>" type="email" id="email" class="form-control custom-input">
+                    <span class="label-text">Nova Senha</span>
+                    <input type="password" id="senha" class="form-control custom-input" placeholder="Deixe em branco para manter">
 
-                        <span class="label-text">Nova Senha</span>
-                        <input type="password" id="senha" class="form-control custom-input" placeholder="Deixe em branco para manter">
+                    <button id="btnAtualizar" type="submit" class="btn btn-update">Salvar Alterações</button>
+                </form>
 
-                        <button id="btnAtualizar" type="submit" class="btn btn-update">Salvar Alterações</button>
-                    </form>
 
-                    <a href="/user/list" class="back-link">← Voltar para a lista</a>
-                </div>
+                <a href="/user/list" class="back-link">← Voltar para a lista</a>
             </div>
         </div>
-    </main>
-
-
+    </div>
+</body>
 <script>
 
     const btnCadastrarUsuario = document.getElementById("btnCadastrarUsuario")
@@ -324,6 +229,5 @@
 
     }
 </script>
-</body>
 
 </html>
