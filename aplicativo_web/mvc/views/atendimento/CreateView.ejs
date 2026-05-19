@@ -34,7 +34,6 @@
             backdrop-filter: blur(8px);
         }
 
-   
         .side-navigation {
             width: var(--nav-width);
             background: rgba(18, 10, 7, 0.95);
@@ -85,7 +84,6 @@
             text-align: center;
         }
 
-   
         .main-content {
             flex: 1;
             display: flex;
@@ -178,20 +176,33 @@
             text-transform: uppercase;
         }
 
+        .btn-register:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         #feedbackMessage {
-            margin-top: 10px;
+            margin-top: 15px;
             text-align: center;
             font-weight: 600;
             display: none;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .msg-success { color: var(--success-green); }
         .msg-error { color: var(--error-red); }
+
+        .modal-backdrop.show {
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 1 !important;
+        }
     </style>
 </head>
+
 <body>
 
-  
     <nav class="side-navigation">
         <ul class="nav-links">
             <li>
@@ -262,8 +273,9 @@
                         <div class="col-md-6">
                             <select id="tipoServico" class="form-control custom-input" required>
                                 <option value="" disabled selected>Tipo de Serviço</option>
-                                <option value="Cabelo">Cabelo</option>
+                                <option value="Corte de Cabelo">Cabelo</option>
                                 <option value="Barba">Barba</option>
+                                <option value="Sobrancelha">Sobrancelha</option>
                                 <option value="Combo">Combo (Cabelo + Barba)</option>
                             </select>
                         </div>
@@ -282,16 +294,48 @@
                 </form>
             </div>
         </div>
+
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center py-4 px-3" style="border-radius: 25px; border: none; background: rgba(253, 246, 236, 0.98);">
+                    <div class="modal-body">
+                        <div id="modalIcon" class="fs-1 mb-3"></div>
+                        <h4 id="modalMessage" style="font-family: 'Playfair Display', serif; color: #3d1f14;" class="fw-bold mb-4"></h4>
+                        <button type="button" class="btn btn-dark px-5" style="border-radius: 50px; font-weight: 600;" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        const formAtendimento = document.getElementById("formAtendimento");
         const btnAgendar = document.getElementById("btnAgendar");
-        const feedback = document.getElementById("feedbackMessage");
 
-        btnAgendar.addEventListener("click", agendarAtendimento);
+        const feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+        const modalMessage = document.getElementById('modalMessage');
+        const modalIcon = document.getElementById('modalIcon');
+
+        formAtendimento.addEventListener("submit", agendarAtendimento);
+
+        function exibirPopup(mensagem, tipo) {
+            modalMessage.innerText = mensagem;
+            
+            if (tipo === 'success') {
+                modalIcon.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>';
+            } else {
+                modalIcon.innerHTML = '<i class="bi bi-x-circle-fill text-danger"></i>';
+            }
+            
+            feedbackModal.show();
+        }
 
         async function agendarAtendimento(e) {
             e.preventDefault();
+
+            btnAgendar.innerText = "AGENDANDO...";
+            btnAgendar.disabled = true;
 
             const payload = {
                 nomeCliente: document.getElementById("nomeCliente").value,
@@ -312,24 +356,26 @@
                     body: JSON.stringify(payload)
                 });
 
+                const data = await response.json();
+
                 if (response.ok) {
-                    feedback.innerText = "✓ Agendamento realizado!";
-                    feedback.className = "msg-success";
-                    feedback.style.display = "block";
-                    document.getElementById("formAtendimento").reset();
+                    if (data.atendimento) {
+                        exibirPopup("Agendamento realizado com sucesso!", "success");
+                        formAtendimento.reset();
+                    } else {
+                        exibirPopup("Não foi possível marcar o atendimento devido a um conflito de horário.", "error");
+                    }
                 } else {
-                    feedback.innerText = "✕ Erro ao salvar agendamento.";
-                    feedback.className = "msg-error";
-                    feedback.style.display = "block";
+                    exibirPopup(`Erro: ${data.message || 'Não foi possível salvar o agendamento.'}`, "error");
                 }
             } catch (error) {
-                feedback.innerText = "✕ Erro de conexão.";
-                feedback.className = "msg-error";
-                feedback.style.display = "block";
+                exibirPopup("Falha ao conectar com o servidor.", "error");
+            } finally {
+                btnAgendar.innerText = "AGENDAR ATENDIMENTO";
+                btnAgendar.disabled = false;
             }
-
-            setTimeout(() => { feedback.style.display = "none" }, 4000);
         }
     </script>
 </body>
 </html>
+
