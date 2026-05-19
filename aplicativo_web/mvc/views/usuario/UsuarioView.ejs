@@ -1,135 +1,192 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BarberShop - Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <style>
-        :root {
-            --sidebar-brown: #3d1f14;
-            --accent-gold: #d4a373;
-            --text-creme: #e6d5c3;
-            --bg-dark: #120a07;
-            --nav-width: 100px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            display: flex;
-        }
-
-        .side-navigation {
-            width: var(--nav-width);
-            background: rgba(18, 10, 7, 0.95);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 0;
-            border-right: 1px solid rgba(212, 163, 115, 0.1);
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-
-        .nav-item-link {
-            color: rgba(230, 213, 195, 0.5);
-            font-size: 1.4rem;
-            transition: 0.3s;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .nav-item-link:hover, .nav-item-link.active {
-            color: var(--accent-gold);
-            background: rgba(212, 163, 115, 0.05);
-        }
-
-        .nav-label {
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            margin-top: 5px;
-            letter-spacing: 1px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .main-content {
-            flex: 1;
-            margin-left: var(--nav-width);
-            width: calc(100% - var(--nav-width));
-        }
-    </style>
-</head>
-<body>
-    <nav class="side-navigation">
-        <ul class="nav-links">
-            <li>
-                <a href="/mvc/views/usuario/UsuarioView.ejs" class="nav-item-link active">
-                    <i class="bi bi-house"></i>
-                    <span class="nav-label">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="/user/list" class="nav-item-link">
-                    <i class="bi bi-people"></i>
-                    <span class="nav-label">Usuários</span>
-                </a>
-            </li>
-            <li>
-                <a href="/user/create" class="nav-item-link">
-                    <i class="bi bi-person-plus"></i>
-                    <span class="nav-label">Novo Cadastro</span>
-                </a>
-            </li>
-            <li class="my-2" style="border-top: 1px solid rgba(212,163,115,0.2); width: 60%; align-self: center;"></li>
-            <li>
-                <a href="/atendimento/list" class="nav-item-link">
-                    <i class="bi bi-calendar-check"></i>
-                    <span class="nav-label">Atendimentos</span>
-                </a>
-            </li>
-            <li>
-                <a href="/atendimento/create" class="nav-item-link">
-                    <i class="bi bi-calendar-plus"></i>
-                    <span class="nav-label">Agendar</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="main-content">
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BarberShop</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+       
+        <style>
+            :root {
+                --sidebar-brown: #3d1f14;
+                --accent-gold: #d4a373;
+                --text-creme: #e6d5c3;
+                --bg-dark: #120a07;
+            }
+   
+            html {
+                scroll-behavior: smooth;
+            }
+   
+            body {
+                background-color: var(--bg-dark);
+                color: white;
+                font-family: 'Inter', sans-serif;
+                overflow-x: hidden;
+            }
+   
+            .navbar-custom {
+                padding: 30px 0;
+                position: absolute;
+                width: 100%;
+                z-index: 10;
+            }
+   
+            .hero-section {
+                background: linear-gradient(135deg, rgba(61, 31, 20, 0.9) 0%, rgba(18, 10, 7, 0.8) 100%),
+                            url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop');
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                position: relative;
+                clip-path: ellipse(150% 100% at 50% 0%);
+            }
+   
+            .hero-title {
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(3rem, 8vw, 5rem);
+                line-height: 1.1;
+                margin-bottom: 20px;
+            }
+   
+            .btn-custom {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 200px;
+                height: 55px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 0;
+            }
+   
+            .btn-outline-style {
+                background-color: transparent;
+                color: white !important;
+                border: 2px solid white;
+            }
+   
+            .btn-outline-style:hover {
+                background-color: white;
+                color: var(--sidebar-brown) !important;
+                transform: translateY(-3px);
+            }
+   
+            .btn-register-nav {
+                background-color: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                color: white;
+                padding: 10px 30px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: 0.3s;
+            }
+   
+            .btn-register-nav:hover {
+                background: white;
+                color: var(--sidebar-brown);
+                border-color: white;
+            }
+   
+            .services-section {
+                padding: 100px 0;
+                background-color: var(--bg-dark);
+            }
+   
+            .section-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+   
+            .section-header h2 {
+                font-family: 'Playfair Display', serif;
+                font-size: 3rem;
+                color: var(--text-creme);
+            }
+   
+            .service-card {
+                background: #1e110d;
+                border: 1px solid rgba(212, 163, 115, 0.1);
+                border-radius: 25px;
+                overflow: hidden;
+                transition: 0.4s all ease;
+                height: 100%;
+                cursor: pointer;
+            }
+   
+            .service-card:hover {
+                transform: translateY(-15px);
+                border-color: var(--accent-gold);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            }
+   
+            .service-img {
+                height: 250px;
+                background-size: cover;
+                background-position: center;
+                transition: 0.5s;
+            }
+   
+            .service-card:hover .service-img {
+                transform: scale(1.1);
+            }
+   
+            .card-body-custom {
+                padding: 30px;
+                text-align: center;
+            }
+   
+            .card-body-custom h3 {
+                font-family: 'Playfair Display', serif;
+                color: var(--accent-gold);
+                margin-bottom: 15px;
+            }
+   
+            .card-body-custom p {
+                font-size: 0.9rem;
+                color: #b5a397;
+                line-height: 1.6;
+            }
+   
+            .price-tag {
+                display: inline-block;
+                margin-top: 15px;
+                font-weight: 700;
+                color: white;
+                background: var(--sidebar-brown);
+                padding: 5px 20px;
+                border-radius: 50px;
+            }
+        </style>
+    </head>
+    <body>
+   
+        <nav class="navbar-custom">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="/" style="font-family: 'Playfair Display', serif; color: white; text-decoration: none; font-size: 1.5rem; font-weight: 900; letter-spacing: 2px;">BARBERSHOP</a>
+                <a href="/user/create" class="btn-register-nav">Cadastrar</a>
+            </div>
+        </nav>
+   
         <header class="hero-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7" data-aos="fade-right">
                         <h1 class="hero-title">Domine seu estilo, <br><span style="color: var(--accent-gold);">eleve sua presença.</span></h1>
-                        <p class="lead mb-4" style="max-width: 500px; color: var(--text-creme); opacity: 0.8;">
+                        <p class="lead mb-4 text-creme" style="max-width: 500px; color: var(--text-creme); opacity: 0.8;">
                             Você merece se sentir incrível todos os dias. Descubra nossos serviços exclusivos.
                         </p>
                         <div class="d-flex gap-3 flex-wrap">
@@ -139,12 +196,61 @@
                 </div>
             </div>
         </header>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-    </script>
+   
+        <section class="services-section" id="servicos">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Nossos Serviços</h2>
+                    <div style="width: 80px; height: 3px; background: var(--accent-gold); margin: 20px auto;"></div>
+                </div>
+       
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="service-card" style="max-width: 350px; width: 100%;">
+                            <div class="service-img" style="background-image: url('https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=500');"></div>
+                            <div class="card-body-custom">
+                                <h3>Corte de Cabelo</h3>
+                                <p>Corte moderno com lavagem e acabamento detalhado.</p>
+                                <span class="price-tag">R$ 50,00</span>
+                            </div>
+                        </div>
+                    </div>
+       
+                    <div class="col-md-4 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-card" style="max-width: 350px; width: 100%;">
+                            <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=500&auto=format&fit=crop');"></div>
+                            <div class="card-body-custom">
+                                <h3>Corte de Barba</h3>
+                                <p>Alinhamento com navalha e hidratação com óleos.</p>
+                                <span class="price-tag">R$ 40,00</span>
+                            </div>
+                        </div>
+                    </div>
+       
+                    <div class="col-md-4 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-card" style="max-width: 350px; width: 100%;">
+                            <div class="service-img" style="background-image: url('https://t3.ftcdn.net/jpg/04/97/05/26/360_F_497052689_ICn3rdMhYRdfLvUuNiwikGjysRywz038.jpg');"></div>
+                            <div class="card-body-custom">
+                                <h3>Sobrancelha</h3>
+                                <p>Limpeza prática e rápida para valorizar o olhar.</p>
+                                <span class="price-tag">R$ 20,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+   
+        <footer class="py-5 text-center" style="background: #0a0604; border-top: 1px solid rgba(212, 163, 115, 0.1);">
+            <p style="color: var(--text-creme); opacity: 0.5;">&copy; 2026 BarberShop. Todos os direitos reservados.</p>
+        </footer>
+   
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({ duration: 1000, once: true });
+        </script>
+    </body>
+    </html>
 </body>
 </html>

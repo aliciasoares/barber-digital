@@ -4,7 +4,7 @@ const AtendimentoController = require("../controllers/AtendimentoController")
 
 const router = Router()
 //rotas do usuario
-router.get("/user/index", (req, res) => UsuarioController.index(req, res))
+router.get("/user/", (req, res) => UsuarioController.index(req, res))
 router.post("/user/create", (req, res) => UsuarioController.usuarioPostAsync(req, res))
 router.get("/user/create", (req, res) => UsuarioController.usuarioCreateView(req, res))
 router.put("/user/edit", (req, res) => UsuarioController.usuarioPutAsync(req, res))
